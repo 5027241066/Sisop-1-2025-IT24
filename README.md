@@ -117,7 +117,7 @@ echo "Terminal: $(tty)"
 - ```$(lscpu | grep -m1 'Model name')``` Mengambil Model Name dari CPU yang sedang digunakan.
 - ```Core Usage: $(top -bn1 | awk '/Cpu\(s\)/ {print 100 - $8}')%``` Menghitung total penggunaan CPU dalam persen.
 - ```echo "Terminal: $(tty)"``` Menampilkan terminal yang sedang digunakan.
-![image](https://github.com/user-attachments/assets/c12ef4e5-9867-4897-8db8-882d9d721d10)
+![image](https://github.com/user-attachments/assets/22e15cf4-2c0a-46df-83cc-eb6ab62a94b6)
 
 
 ### f. In Grief and Great Delight
