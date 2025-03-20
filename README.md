@@ -137,6 +137,8 @@ echo "Fragments Available: $fragment_avail"
 - ```awk '/MemAvailable/ {print $2/1024 " MB"}' /proc/meminfo```
 - ```echo "Fragments Usage: $fragment_usage ($fragment_used / $fragment_tot)"``` Print hasil dari ```fragment_usage``` kemudian memperlihatkan berapa RAM yang terpakai ```fragment_used``` dari total RAM ```fragment_tot```.
 - ```echo "Fragments Available: $fragment_avail"``` Print hasil dari ```fragment_avail``` untuk mengetahui berapa RAM yang tersedia.
+![image](https://github.com/user-attachments/assets/b2e65b86-7465-41c6-a815-587be0949689)
+
 
 # Soal 3 
 Untuk merayakan ulang tahun ke 52 album The Dark Side of the Moon, tim PR Pink Floyd mengadakan sebuah lomba dimana peserta diminta untuk membuat sebuah script bertemakan setidaknya 5 dari 10 lagu dalam album tersebut. Sebagai salah satu peserta, kamu memutuskan untuk memilih Speak to Me, On the Run, Time, Money, dan Brain Damage. Saat program ini dijalankan, terminal harus dibersihkan terlebih dahulu agar tidak mengganggu tampilan dari fungsi fungsi yang kamu buat. Program ini dijalankan dengan cara ./dsotm.sh --play=”<Track>” dengan Track sebagai nama nama lagu yang kamu pilih. [Author: Afnaan / honque]
