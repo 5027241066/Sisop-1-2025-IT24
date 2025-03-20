@@ -540,7 +540,7 @@ Skrip ini akan menampilkan **Pokemon dengan Usage% dan RawUsage tertinggi**.
 🔥 Highest Adjusted Usage: Landorus-Therian 31.0927%
 ⚔  Highest Raw Usage: Garchomp 563831 uses
 ```
-
+![Screenshot 2025-03-20 230429](https://github.com/user-attachments/assets/78aa3d8d-453d-44a4-8525-5d6521bd5bde)
 ---
 
 ### **B. Mengurutkan Pokemon berdasarkan data kolom (`--sort <column>`)**
@@ -561,7 +561,7 @@ Landorus-Therian,31.0927%,253499,Ground,Flying,89,145,90,105,80,91
 Garchomp,27.0632%,563831,Ground,Dragon,108,130,95,80,85,102
 ...
 ```
-
+![Screenshot 2025-03-20 233434](https://github.com/user-attachments/assets/8a0080c4-5b1f-4aee-806a-ab02da882f7d)
 ---
 
 ### **C. Mencari nama Pokemon tertentu(`--grep <name>`)**
@@ -580,7 +580,7 @@ Mencari Pokemon dengan nama tertentu, misalnya "Rotom".
 Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed
 Rotom-Wash,1.62637%,71243,Electric,Water,50,65,107,105,107,86
 ```
-
+![Screenshot 2025-03-20 234909](https://github.com/user-attachments/assets/2887e3bc-7c61-4cb4-b88a-903673e8156d)
 ---
 
 ### **D. Mencari Pokemon berdasarkan filter nama type(`--filter <type>`)**
@@ -600,7 +600,7 @@ Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed
 Ting-Lu,21.5283%,192107,Dark,Ground,155,110,125,55,80,45
 Kingambit,21.2771%,412146,Dark,Steel,100,135,120,60,85,50
 ```
-
+![Screenshot 2025-03-20 234000](https://github.com/user-attachments/assets/74d446de-d841-4539-80b4-540d23db9d74)
 ---
 ### **E. Error Handling (`--filter` tanpa argumen, file tidak ditemukan, opsi tidak valid)**
 
@@ -636,6 +636,7 @@ Error: File 'data_tidak_ada.csv' not found!
 Error: Invalid option '--wrongoption'
 Use -h or --help for more information
 ```
+![Screenshot 2025-03-20 234105](https://github.com/user-attachments/assets/60f0f9d6-4823-43f5-a85c-85d28c7d2f1b)
 
 ### **F. Help Screen (`-h` atau `--help`)**
 Menampilkan bantuan mengenai penggunaan skrip.
@@ -657,7 +658,7 @@ Options:
   --filter <type>      : Filter Pokemon by type (e.g., Dark, Fire)
   -h, --help           : Show this help screen
 ```
-
+![Screenshot 2025-03-20 234155](https://github.com/user-attachments/assets/f72850ef-d4c9-4f4f-9443-035607c522b8)
 ---
 
 
