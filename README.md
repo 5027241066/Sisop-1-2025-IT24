@@ -138,6 +138,7 @@ Dibagi 1024 agar hasilnya dalam MB.
 - ```awk '/MemAvailable/ {print $2/1024 " MB"}' /proc/meminfo``` Mengetahui RAM yang tersedia dengan cara mencari ```MemAvailable``` kemudian diubah ke MB dengan dibagi 1024.
 - ```echo "Fragments Usage: $fragment_usage ($fragment_used / $fragment_tot)"``` Print hasil dari ```fragment_usage``` kemudian memperlihatkan berapa RAM yang terpakai ```fragment_used``` dari total RAM ```fragment_tot```.
 - ```echo "Fragments Available: $fragment_avail"``` Print hasil dari ```fragment_avail``` untuk mengetahui berapa RAM yang tersedia.
+
 ![image](https://github.com/user-attachments/assets/b2e65b86-7465-41c6-a815-587be0949689)
 
 
