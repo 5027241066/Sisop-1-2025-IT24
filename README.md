@@ -293,6 +293,9 @@ speak_to_me() {
 - Menggunakan ```curl``` untuk mengambil data API yang berbentuk JSON untuk disimpan pada variabel affirmation
 - Melakukan ```for loop``` untuk print out afirmasi dan memberikan efek animasi huruf satu-persatu
 
+Output :
+![image](https://github.com/user-attachments/assets/19e85816-95ea-4e77-9175-e034dc808461)
+
 
 ### b. On the Run
 Selanjutnya, kamu memutuskan untuk membuat sebuah progress bar yang berjalan dengan interval random (setiap progress bertambah dalam interval waktu yang random dengan range 0.1 detik sampai 1 detik). Diberikan kebebasan artistik, tidak harus sama persis dengan tampilan pada gif, tetapi untuk fungsionalitas, progress bar harus memiliki perhitungan persentase, dan panjang dari progress bar tidak berubah ubah (selalu dari ujung kiri terminal ke ujung kanan terminal seperti pada gif)
@@ -336,7 +339,12 @@ Revisi
 	local max_bar_width=$((width - 10)) 
 ```
 - Memodifikasi fungsi agar dapat membaca panjang terminal, sehingga tampilan progress bar bisa menyeluruh dari kiri hingga kanan terminal
-    
+
+Output :
+![image](https://github.com/user-attachments/assets/c89ad782-a15e-404c-a6ec-d0c463fddc57)
+
+![image](https://github.com/user-attachments/assets/ed966ed0-a006-4932-a053-12e39772468c)
+
 
 ### c. Time
 Singkat saja, untuk time, kamu memutuskan untuk membuat live clock yang menunjukkan tanggal, jam, menit dan detik. Diberikan kebebasan artistik, tidak harus sama persis dengan tampilan pada gif, tetapi untuk fungsionalitas, jam harus setidaknya menunjukkan tahun, bulan, tanggal, jam, menit, dan detik yang diperbaharui setiap detik.
@@ -413,6 +421,10 @@ Fungi ```day_or_night``` digunakan untuk memberi tahukan keadaaan pada jam terte
   ```
   Membuat ```if else```dengan syarat, jika nilai pada variabel jam pada interval 6-18 akan memberikan output ```| ☀️ (Day)```. Sebaliknya, jika jam menunjukkan pada rentang selain 6-18, maka akan memberikan output ```| 🌙 (Night)```
 
+Output :
+![image](https://github.com/user-attachments/assets/9718c687-802c-4299-9fa6-46fdfae79254)
+
+
 ### d. Money
 Kamu teringat dengan program yang sangat disukai oleh teman mu yang bernama cmatrix. Kamu pun memutuskan untuk membuat program yang mirip, tetapi mengganti isinya dengan simbol mata uang seperti $ € £ ¥ ¢ ₹ ₩ ₿ ₣ dan lain lainnya. Diberikan kebebasan artistik, tidak harus sama persis dengan tampilan pada gif, tetapi untuk fungsionalitas, matrix tersusun oleh simbol mata uang minimal 5 simbol yang berbeda.
 ```
@@ -456,6 +468,10 @@ money() {
   - ```$color``` dan ```$symbol``` adalah input dari warna dan simbol yang telah diacak
 - ```sleep 0.15``` memberikan jeda 0.15 detik sebelum loop selanjutnya
 
+Output :
+![image](https://github.com/user-attachments/assets/119d3780-45f1-42aa-9cef-d11f2d67d1d6)
+
+
 
 ### e. Brain Damage
 Untuk lagu Brain Damage, kamu mendapatkan ide untuk menampilkan proses yang sedang berjalan, seperti task manager tetapi menampilkannya di dalam terminal dan membuat agar task manager tersebut menampilkan data baru setiap detiknya. Diberikan kebebasan artistik, tidak harus sama persis dengan tampilan pada gif, tetapi untuk fungsionalitas, data harus sesuai dengan ps/top dan sejenisnya.
@@ -491,6 +507,10 @@ brain_damage() {
 - ```ps -eo pid,user,%cpu,%mem,comm``` akan menampilkan proses yang sedang berjalan seperti pid, user, %cpu, %memory, dan comm
 - ```--sort=-%cpu``` akan melakukan sorting CPU usage secara descending (terbesar ke terkecil)
 - ```head -10``` menampilkan hanya 10 proses tertinggi
+
+Output : 
+![image](https://github.com/user-attachments/assets/9b61cb65-f985-41ee-8c0d-c49d3f9af4a5)
+
 
 # Soal 4
 # Pokemon Analysis
