@@ -1,3 +1,30 @@
+# Table of Contents
+- Soal 1
+	- a. Banyak Buku yang Dibaca oleh Chris Hemsworth
+	- b. Rata-rata Pembaca Menggunakan Tablet
+	- c. Pembaca yang Memberi Rating Tertinggi
+ 	- d. Genre Buku Paling Popular di Asia
+- Soal 2
+	- a. First Step in a New World
+ 	- b. Radiant Genesis
+  	- c. Unceasing Spirit
+  	- d. The Eternal Realm of Light
+  	- e. The Brutality of Glass
+  	- f. In Grief and Great Delight
+- Soal 3
+	- a. Speak To Me
+	- b. On The Run
+	- c. Time
+	- d. Money
+ 	- e. Brain Damage 
+- Soal 4
+	- a. Melihat summary dari data
+ 	- b. Mengurutkan Pokemon berdasarkan data kolom
+  	- c. Mencari nama Pokemon tertentu
+  	- d. Mencari Pokemon berdasarkan filter nama type
+  	- e. Error handling
+  	- f. Help screen yang menarik
+
 # Soal 1
 Membuat file poppo_siroyo.sh
 ```
@@ -8,7 +35,7 @@ Menginstall file reading_data.csv
 wget "https://drive.usercontent.google.com/u/0/uc?id=1l8fsj5LZLwXBlHaqhfJVjz_T0p7EJjqV&export=download" -O reading_data.csv
 ```
 ### a.
-Menggunakan awk untuk mencari “Chris Hemsworth” dan menghitung buku yang dibacanya
+Menggunakan awk untuk mencari “Chris Hemsworth” dan menghitung buku yang dibacanya.
 ```
 awk -F, '{
         if ($2 == "Chris Hemsworth") {
@@ -20,21 +47,21 @@ awk -F, '{
     END {print "Chris Hemsworth membaca", count, "buku.";}' reading_data.csv
 ```
 Mencari "Chris Hemsworth" di column 2 kemudian menghitung berapa kali nama tersebut muncul untuk mengetahui berapa buku yang telah dibaca.
-- ```if ($2 == "Chris Hemsworth") { count++}``` jika pada column 2 terdapat "Chris Hemsworth" maka akan "count" ditambahkan 1
-- ```count=count``` selain Chris Hemsworth count akan tetap sama
-![Screenshot 2025-03-20 105400](https://github.com/user-attachments/assets/5f21e9fb-a111-4104-8598-c8eb53c35b72)
+- ```if ($2 == "Chris Hemsworth") { count++}``` jika pada column 2 terdapat "Chris Hemsworth" maka akan "count" ditambahkan 1.
+- ```count=count``` selain Chris Hemsworth count akan tetap sama.
+![image](https://github.com/user-attachments/assets/30674467-06b2-4349-adf9-be4ab652ee60)
 
 
 ### b.
-Menghitung rata-rata pembaca buku yang menggunakan media tablet
-Diketahui Device terdapat pada column H/8 dan Reading Duration pada column F/6
+Menghitung rata-rata pembaca buku yang menggunakan media tablet.
+Diketahui Device terdapat pada column H/8 dan Reading Duration pada column F/6.
 ```
 awk -F, '{if ($8 == "Tablet") {total += $6; count++}} END {print "Rata-rata durasi membaca dengan Tablet adalah", total/count, "menit."}' reading_data.csv
 ```
-- ```$8 -- "Tablet" total += $6``` untuk mencari pada column 8 yang membaca menggunakan tablet kemudian melihat pada column 6 dan memasukkan angka ke dalam variabel "total"
-- ```count++``` menambah tiap pengulangan pengguna tablet ke dalam variabel "total"
-- ```total/count``` untuk menghitung rata-rata dari variabel "total" dibagi dengan jumlah count yang terjadi
-![Screenshot 2025-03-20 105418](https://github.com/user-attachments/assets/b68f5b2f-da2b-442d-ba1c-b219a4dfd2d0)
+- ```$8 -- "Tablet" total += $6``` untuk mencari pada column 8 yang membaca menggunakan tablet kemudian melihat pada column 6 dan memasukkan angka ke dalam variabel "total".
+- ```count++``` menambah tiap pengulangan pengguna tablet ke dalam variabel "total".
+- ```total/count``` untuk menghitung rata-rata dari variabel "total" dibagi dengan jumlah count yang terjadi.
+![image](https://github.com/user-attachments/assets/30674467-06b2-4349-adf9-be4ab652ee60)
 
 
 ### c.
@@ -43,13 +70,13 @@ Diketahui rating diberikan pada column G/7.
 ```
 awk -F, '{if ($7 > max && $7 >= 0 && $7 <= 10) {max = $7; name = $2; book = $3}} END {print "Pembaca dengan rating tertinggi:", name, "-", book, "-", max}' reading_data.csv
 ```
-- ```$7 > max && $7 >= 0 && $7 <= 10``` memeriksa apakah pada column 7 yang sebelumnya disimpan memiliki nilai lebih besar dari yang sebelumnya telah disimpan kemudian memberi limit untuk mencari angka pada column 7 yaitu minimal 0 dan maksimal 10
-- ```max = $7; name = $2; book = $3``` untuk menyinpan apabila telah ditemukan rating paling tinggi pada column 7
-![Screenshot 2025-03-20 105432](https://github.com/user-attachments/assets/0c243ce2-09a5-4f43-b14a-72ea836761e7)
+- ```$7 > max && $7 >= 0 && $7 <= 10``` memeriksa apakah pada column 7 yang sebelumnya disimpan memiliki nilai lebih besar dari yang sebelumnya telah disimpan kemudian memberi limit untuk mencari angka pada column 7 yaitu minimal 0 dan maksimal 10.
+- ```max = $7; name = $2; book = $3``` untuk menyinpan apabila telah ditemukan rating paling tinggi pada column 7.
+![image](https://github.com/user-attachments/assets/30674467-06b2-4349-adf9-be4ab652ee60)
 
 
 ### d
-Mencari buku yang paling popolar di Asia dan setelah tahun 2023
+Mencari buku yang paling popolar di Asia dan setelah tahun 2023.
 ```
 awk -F, '$9 ~ /Asia/ && $5 > "2023-12-31" {genre[$4]++} 
 END {
@@ -62,24 +89,54 @@ END {
 }
 print "Genre paling populer di Asia setelah 2023 adalah", popular_genre, "dengan", max_count, "buku.";}' reading_data.csv
 ```
-- ```$9 ~ /Asia/``` memberi batasan yang dicari pada column 9 hanya "Asia"
-- ```$5 > "2023-12-31"``` mencari tanggal baca setelah 31 Desember 2023
-- ```{genre[$4]++}``` menambah jumlah genre setelah 2 syarat sebelumnya memenuhi
-- ```max_count = 0``` set max_count awal adalah 0 untuk ditambah kemudian
-- ```(genre[g] > max_count)``` memeriksa jumlah genre apakah lebih besar dari max_count
-- ```{max_count = genre[g]``` jika ditemukan genre saat ini lebih banyak dari genre sebelumnya maka akan disimpan ke popular genre
-- ```popular_genre = g``` memperbarui hasil sebelumnya kedalam popular genre
-![Screenshot 2025-03-20 105446](https://github.com/user-attachments/assets/02c9e110-4206-499f-a94d-214af7c5527e)
+- ```$9 ~ /Asia/``` memberi batasan yang dicari pada column 9 hanya "Asia".
+- ```$5 > "2023-12-31"``` mencari tanggal baca setelah 31 Desember 2023.
+- ```{genre[$4]++}``` menambah jumlah genre setelah 2 syarat sebelumnya memenuhi.
+- ```max_count = 0``` set max_count awal adalah 0 untuk ditambah kemudian.
+- ```(genre[g] > max_count)``` memeriksa jumlah genre apakah lebih besar dari max_count.
+- ```{max_count = genre[g]``` jika ditemukan genre saat ini lebih banyak dari genre sebelumnya maka akan disimpan ke popular genre.
+- ```popular_genre = g``` memperbarui hasil sebelumnya kedalam popular genre.
+![image](https://github.com/user-attachments/assets/30674467-06b2-4349-adf9-be4ab652ee60)
 
 
-Masukkan semua code ke poppo_siroyo.sh
+Masukkan semua code ke poppo_siroyo.sh.
 ```
 nano poppo_siroyo.sh
 ```
 ### Revisi
-Menghapus ```wget``` dari file poppo_siroyo.sh
+Menghapus ```wget``` dari file poppo_siroyo.sh.
 
 # Soal 2
+### e. The Brutality of Glass
+Memeriksa CPU Usage
+```
+echo "$(lscpu | grep -m1 'Model name')"
+echo "Core Usage: $(top -bn1 | awk '/Cpu\(s\)/ {print 100 - $8}')%"
+echo "Terminal: $(tty)"
+```
+- ```$(lscpu | grep -m1 'Model name')``` Mengambil Model Name dari CPU yang sedang digunakan.
+- ```Core Usage: $(top -bn1 | awk '/Cpu\(s\)/ {print 100 - $8}')%``` Menghitung total penggunaan CPU dalam persen.
+- ```echo "Terminal: $(tty)"``` Menampilkan terminal yang sedang digunakan.
+![image](https://github.com/user-attachments/assets/c12ef4e5-9867-4897-8db8-882d9d721d10)
+
+
+### f. In Grief and Great Delight
+Memeriksa RAM Usage
+```
+fragment_usage=$(awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {print (total-avail)*100/total "%"}' /proc/meminfo)
+fragment_used=$(awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {print (total-avail)/1024 " MB"}' /proc/meminfo)
+fragment_tot=$(awk '/MemTotal/ {print $2/1024 " MB"}' /proc/meminfo)
+fragment_avail=$(awk '/MemAvailable/ {print $2/1024 " MB"}' /proc/meminfo)
+
+echo "Fragments Usage: $fragment_usage ($fragment_used / $fragment_tot)"
+echo "Fragments Available: $fragment_avail"
+```
+- ```awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {print (total-avail)*100/total "%"}' /proc/meminfo``` Mencari ```MemTotal``` kemudian dikurang ```MemAvailable``` dan kedua itu dibagi dengan ```Memtotal``` dan dikali 100 untuk menghitung usage dari Fragments.
+- ```awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {print (total-avail)/1024 " MB"}' /proc/meminfo```
+- ```awk '/MemTotal/ {print $2/1024 " MB"}' /proc/meminfo```
+- ```awk '/MemAvailable/ {print $2/1024 " MB"}' /proc/meminfo```
+- ```echo "Fragments Usage: $fragment_usage ($fragment_used / $fragment_tot)"``` Print hasil dari ```fragment_usage``` kemudian memperlihatkan berapa RAM yang terpakai ```fragment_used``` dari total RAM ```fragment_tot```.
+- ```echo "Fragments Available: $fragment_avail"``` Print hasil dari ```fragment_avail``` untuk mengetahui berapa RAM yang tersedia.
 
 # Soal 3 
 Untuk merayakan ulang tahun ke 52 album The Dark Side of the Moon, tim PR Pink Floyd mengadakan sebuah lomba dimana peserta diminta untuk membuat sebuah script bertemakan setidaknya 5 dari 10 lagu dalam album tersebut. Sebagai salah satu peserta, kamu memutuskan untuk memilih Speak to Me, On the Run, Time, Money, dan Brain Damage. Saat program ini dijalankan, terminal harus dibersihkan terlebih dahulu agar tidak mengganggu tampilan dari fungsi fungsi yang kamu buat. Program ini dijalankan dengan cara ./dsotm.sh --play=”<Track>” dengan Track sebagai nama nama lagu yang kamu pilih. [Author: Afnaan / honque]
