@@ -33,27 +33,24 @@ speak_to_me() {
 # Fungsi  On the Run: Menampilkan progress bar dengan persentase
 on_the_run() {
 
-    	clear
-    	local progress=0
+    clear
+    local progress=0
+    local width=$(tput cols)  
+    local max_bar_width=$((width - 10))  # Revisi agar panjang progress bar sama dengan panjang tampilan terminal
 
-    	echo -e "================ ARIP (a Random Interval Progress Bar) =====================================================\n"
-    	echo -e "LOADING BAR :\n"
+    echo -e "================ ARIP (a Random Interval Progress Bar) =====================================================\n"
+    echo -e "LOADING BAR :\n"
 
-	# Perulangan untuk membuat loading bar
-    	while [ $progress -le 100 ]; do
-        	# Membuat interval random antara 0.1 - 1 detik
-        	sleep $(awk -v min=0.1 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
-        	tput cuu 1 && tput el
+    while [ $progress -le 100 ]; do
+        sleep $(awk -v min=0.1 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
+        tput cuu 1 && tput el
 
-		# Setiap bar akan mewakili 2% progress
-		local bar_count=$((progress / 2))
+        local bar_count=$((progress * max_bar_width / 100))
 
-        	# Print out progress bar
-        	printf "[%-50s] %3d%%\n" "$(printf '▨%.0s' $(seq 1 $progress))" "$progress"
+        printf "[%-*s] %3d%%\n" "$max_bar_width" "$(printf '▨%.0s' $(seq 1 $bar_count))" "$progress"
 
-        	((progress+=2))
-
-    	done
+        ((progress+=2))
+    done
 }
 
 # Fungsi if else untuk mengecek pagi atau malam
