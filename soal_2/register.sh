@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Lokasi folder data ada di dalam soal_2
 data_dir="./data"
 data_file="$data_dir/player.csv"
 salt="trakea_salt"
@@ -56,3 +57,4 @@ hash_password=$(echo -n "${salt}${password}" | sha256sum | awk '{print $1}')
 # Menambahkan informasi email, username, dan password ke data_file tanpa menghapus isi sebelumnya
 echo "$email,$username,$hash_password" >> "$data_file"
 echo "✅ Registration successful!"
+
