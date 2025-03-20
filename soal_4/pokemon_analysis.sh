@@ -1,10 +1,19 @@
 #!/bin/bash
 
-# F
+# ASCII Art 
+display_ascii_art() {
+    echo "========================================="
+    echo "Y   Y  EEEEE  L      L       OOO   W   W"
+    echo " Y Y   E      L      L      O   O  W   W"
+    echo "  Y    EEEE   L      L      O   O  W W W"
+    echo "  Y    E      L      L      O   O  WW WW"
+    echo "  Y    EEEEE  LLLLL  LLLLL   OOO   W   W"
+    echo "========================================="
+}
+
+#  help screen
 show_help() {
-    echo "=================================================="
-    echo "                     POKEMON"
-    echo "=================================================="
+    display_ascii_art
     echo "Usage: ./pokemon_analysis.sh <input_file> <option> [arguments]"
     echo ""
     echo "Options:"
@@ -19,82 +28,67 @@ show_help() {
     echo "  ./pokemon_analysis.sh pokemon_usage.csv --sort usage"
     echo "  ./pokemon_analysis.sh pokemon_usage.csv --grep Rotom"
     echo "  ./pokemon_analysis.sh pokemon_usage.csv --filter Dark"
-    echo "=================================================="
-}
+} 
 
-# A
+# summary
 show_summary() {
     input_file=$1
+
     if [[ ! -f "$input_file" ]]; then
         echo "Error: File '$input_file' not found!"
         exit 1
     fi
-    # Usage tertinggi
-    highest_usage=$(sed 1d "$input_file" | awk -F',' 'BEGIN {max=0} {if ($2+0 > max) {max=$2+0; name=$1}} END {print name, max"%"}')
 
-    # Raw Usage tertinggi
-    highest_raw=$(sed 1d "$input_file" | awk -F',' 'BEGIN {max=0} {if ($3+0 > max) {max=$3+0; name=$1}} END {print name, max" uses"}')
+    highest_usage=$(awk -F',' 'NR>1 {if ($2+0 > max) {max=$2+0; name=$1}} END {print name, max"%"}' "$input_file")
+    highest_raw=$(awk -F',' 'NR>1 {if ($3+0 > max) {max=$3+0; name=$1}} END {print name, max" uses"}' "$input_file")
+
     echo "📊 Summary of $input_file"
     echo "🔥 Highest Adjusted Usage: $highest_usage"
     echo "⚔  Highest Raw Usage: $highest_raw"
 }
 
-# B
+# mengurutkan Pokemon
 sort_pokemon() {
     input_file=$1
     sort_by=$2
+    limit=10  
 
     case $sort_by in
-        "usage")
-            sort -t, -k2,2nr "$input_file"
-            ;;
-        "rawusage")
-            sort -t, -k3,3nr "$input_file"
-            ;;
-        "name")
-            sort -t, -k1,1 "$input_file"
-            ;;
-        "hp")
-            sort -t, -k6,6nr "$input_file"
-            ;;
-        "atk")
-            sort -t, -k7,7nr "$input_file"
-            ;;
-        "def")
-            sort -t, -k8,8nr "$input_file"
-            ;;
-        "spatk")
-            sort -t, -k9,9nr "$input_file"
-            ;;
-        "spdef")
-            sort -t, -k10,10nr "$input_file"
-            ;;
-        "speed")
-            sort -t, -k11,11nr "$input_file"
-            ;;
-        *)
-            echo "Error: Invalid sort option"
-            echo "Use -h or --help for more information"
-            exit 1
-            ;;
+        "usage")   col=2;;
+        "rawusage") col=3;;
+        "name")    col=1;;
+        "hp")      col=6;;
+        "atk")     col=7;;
+        "def")     col=8;;
+        "spatk")   col=9;;
+        "spdef")   col=10;;
+        "speed")   col=11;;
+        *) echo "Error: Invalid sort option"; show_help; exit 1;;
     esac
+
+    head -n 1 "$input_file"
+    tail -n +2 "$input_file" | sort -t, -k${col},${col}nr | head -n $limit
 }
 
-# C
+# Pokemon berdasarkan nama
 search_pokemon() {
     input_file=$1
     search_term=$2
 
-    grep -i "$search_term" "$input_file" | sort -t, -k2,2nr
+    echo "Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed"
+    grep -i "^$search_term," "$input_file" | sort -t, -k2,2nr
 }
 
-# D
+# Pokemon berdasarkan type
 filter_by_type() {
     input_file=$1
     filter_type=$2
 
-    awk -F, -v type="$filter_type" 'NR>1 && ($4 == type || $5 == type)' "$input_file" | sort -t, -k2,2nr
+    echo "Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed"
+    awk -F',' -v type="$filter_type" 'NR>1 && ($4 == type || $5 == type)' "$input_file" | sort -t, -k2,2nr
 }
+
+
 
 if [[ $# -eq 0 ]]; then
     echo "Usage: $0 <pokemon_usage.csv> <option> [arguments]"
@@ -121,34 +115,37 @@ if [[ ! -f "$input_file" ]]; then
     exit 1
 fi
 
-if [ "$option" == "--info" ]; then
-    show_summary "$input_file"
-elif [ "$option" == "--sort" ]; then
-    if [ $# -lt 3 ]; then
-        echo "Error: No sort option provided"
+case $option in
+    "--info")
+        show_summary "$input_file"
+        ;;
+    "--sort")
+        if [[ $# -lt 3 ]]; then
+            echo "Error: No sort option provided"
+            show_help
+            exit 1
+        fi
+        sort_pokemon "$input_file" "$3"
+        ;;
+    "--grep")
+        if [[ $# -lt 3 ]]; then
+            echo "Error: No search term provided"
+            show_help
+            exit 1
+        fi
+        search_pokemon "$input_file" "$3"
+        ;;
+    "--filter")
+        if [[ $# -lt 3 ]]; then
+            echo "Error: No filter option provided"
+            show_help
+            exit 1
+        fi
+        filter_by_type "$input_file" "$3"
+        ;;
+    *)
+        echo "Error: Invalid option '$option'"
         show_help
         exit 1
-    fi
-    echo "Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed"
-    sort_pokemon "$input_file" "$3"
-elif [ "$option" == "--grep" ]; then
-    if [ $# -lt 3 ]; then
-        echo "Error: No search term provided"
-        show_help
-        exit 1
-    fi
-    echo "Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed"
-    search_pokemon "$input_file" "$3"
-elif [ "$option" == "--filter" ]; then
-    if [ $# -lt 3 ]; then
-        echo "Error: No filter option provided"
-        show_help
-        exit 1
-    fi
-    echo "Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed"
-    filter_by_type "$input_file" "$3"
-else
-    echo "Error: Invalid option '$option'. Use -h or --help for more information."
-    show_help
-    exit 1
-fi
+        ;;
+esac
