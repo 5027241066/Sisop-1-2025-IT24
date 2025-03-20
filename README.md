@@ -49,6 +49,7 @@ awk -F, '{
 Mencari "Chris Hemsworth" di column 2 kemudian menghitung berapa kali nama tersebut muncul untuk mengetahui berapa buku yang telah dibaca.
 - ```if ($2 == "Chris Hemsworth") { count++}``` jika pada column 2 terdapat "Chris Hemsworth" maka akan "count" ditambahkan 1.
 - ```count=count``` selain Chris Hemsworth count akan tetap sama.
+
 ![image](https://github.com/user-attachments/assets/30674467-06b2-4349-adf9-be4ab652ee60)
 
 
@@ -61,6 +62,7 @@ awk -F, '{if ($8 == "Tablet") {total += $6; count++}} END {print "Rata-rata dura
 - ```$8 -- "Tablet" total += $6``` untuk mencari pada column 8 yang membaca menggunakan tablet kemudian melihat pada column 6 dan memasukkan angka ke dalam variabel "total".
 - ```count++``` menambah tiap pengulangan pengguna tablet ke dalam variabel "total".
 - ```total/count``` untuk menghitung rata-rata dari variabel "total" dibagi dengan jumlah count yang terjadi.
+
 ![image](https://github.com/user-attachments/assets/30674467-06b2-4349-adf9-be4ab652ee60)
 
 
@@ -72,6 +74,7 @@ awk -F, '{if ($7 > max && $7 >= 0 && $7 <= 10) {max = $7; name = $2; book = $3}}
 ```
 - ```$7 > max && $7 >= 0 && $7 <= 10``` memeriksa apakah pada column 7 yang sebelumnya disimpan memiliki nilai lebih besar dari yang sebelumnya telah disimpan kemudian memberi limit untuk mencari angka pada column 7 yaitu minimal 0 dan maksimal 10.
 - ```max = $7; name = $2; book = $3``` untuk menyinpan apabila telah ditemukan rating paling tinggi pada column 7.
+
 ![image](https://github.com/user-attachments/assets/30674467-06b2-4349-adf9-be4ab652ee60)
 
 
@@ -96,6 +99,7 @@ print "Genre paling populer di Asia setelah 2023 adalah", popular_genre, "dengan
 - ```(genre[g] > max_count)``` memeriksa jumlah genre apakah lebih besar dari max_count.
 - ```{max_count = genre[g]``` jika ditemukan genre saat ini lebih banyak dari genre sebelumnya maka akan disimpan ke popular genre.
 - ```popular_genre = g``` memperbarui hasil sebelumnya kedalam popular genre.
+
 ![image](https://github.com/user-attachments/assets/30674467-06b2-4349-adf9-be4ab652ee60)
 
 
@@ -117,6 +121,7 @@ echo "Terminal: $(tty)"
 - ```$(lscpu | grep -m1 'Model name')``` Mengambil Model Name dari CPU yang sedang digunakan.
 - ```Core Usage: $(top -bn1 | awk '/Cpu\(s\)/ {print 100 - $8}')%``` Menghitung total penggunaan CPU dalam persen.
 - ```echo "Terminal: $(tty)"``` Menampilkan terminal yang sedang digunakan.
+
 ![image](https://github.com/user-attachments/assets/22e15cf4-2c0a-46df-83cc-eb6ab62a94b6)
 
 
