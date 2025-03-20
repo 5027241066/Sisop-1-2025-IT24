@@ -383,12 +383,12 @@ brain_damage() {
 # Soal 4
 # Pokemon Analysis
 
-## 📝 Deskripsi
+##  Deskripsi
 Soal nomor 4 meminta kita untuk menganalisis data penggunaan Pokemon dalam turnamen "Generation 9 OverUsed 6v6 Singles" dengan membuat skrip `pokemon_analysis.sh`. Skrip ini digunakan untuk menampilkan informasi, mengurutkan, mencari, dan memfilter data Pokemon berdasarkan CSV yang diberikan.
 
 ---
 
-## 📌 Struktur dan Fungsi Skrip
+## Struktur dan Fungsi Skrip
 
 ### **A. Melihat summary dari data (`--info`)**
 Skrip ini akan menampilkan **Pokemon dengan Usage% dan RawUsage tertinggi**.
