@@ -111,6 +111,118 @@ nano poppo_siroyo.sh
 Menghapus ```wget``` dari file poppo_siroyo.sh.
 
 # Soal 2
+### a. First Step in a New World
+Tugas pertama, dikarenakan kejadian “Axiom of The End” yang semakin mendekat, diperlukan sistem untuk mencatat “Player” aktif agar terpisah dari “Observer”. Buatlah dua shell script, login.sh dan register.sh, yang dimana database “Player” disimpan di /data/player.csv. Untuk register, parameter yang dipakai yaitu email, username, dan password. Untuk login, parameter yang dipakai yaitu email dan password.
+```
+data_dir="./data"
+data_file="$data_dir/player.csv"
+salt="trakea_salt"
+
+
+```
+- Deklarasikan direktori sebagai data_file
+- Revisi : Memperbaiki struktur direktori agar file csv terbaca dengan baik
+
+```
+echo "$email,$username,$hash_password" >> "$data_file"
+```
+- Untuk ```register.sh```` akan enyimpan data registrasi berupa email, username, dan password ke direktori yang ditentukan
+
+```
+echo "====== Player Login ======"
+
+while true; do
+    read -p "Enter email: " email
+    read -s -p "Enter password: " password
+    echo ""
+
+```
+- Untuk ```login.sh``` akan membaca inputan parameter email dan password saja
+
+### b. Radiant Genesis
+Sistem login/register untuk para "Player" tentunya memiliki constraint, yaitu validasi email dan password. 
+Email harus memiliki format yang benar dengan tanda @ dan titik, sementara password harus memiliki minimal 8 karakter, setidaknya satu huruf kecil, satu huruf besar, dan satu angka untuk menjaga keamanan data di dunia “Arcaea”.
+Ex (tidak harus sama, kebebasan artistik praktikan):
+
+```
+if [[ "$email" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
+```
+- Pengecekan dengan ```if else``` untuk memastikan password mengandung @ dan .
+
+```
+if [[ "$password" != "$password2" ]]; then
+        echo "❌ Passwords do not match!"
+    elif [[ ${#password} -lt 8 ]]; then
+        echo "❌ Password must be at least 8 characters long!"
+    elif ! [[ "$password" =~ [A-Z] ]]; then
+        echo "❌ Password must contain at least one uppercase letter!"
+    elif ! [[ "$password" =~ [a-z] ]]; then
+        echo "❌ Password must contain at least one lowercase letter!"
+    elif ! [[ "$password" =~ [0-9] ]]; then
+        echo "❌ Password must contain at least one number!"
+    else
+        break
+    fi
+```
+- Melakukan pengecekan pada username dengan ```if else```
+
+
+```
+data_file="data/player.csv"
+mkdir -p data
+[ ! -f "$data_file" ] && touch "$data_file"
+
+while true; do
+    clear
+    echo "========================="
+    echo "      ARCAEA TERMINAL    "
+    echo "========================="
+    echo "1. Register New Account"
+    echo "2. Login to Existing Account"
+    echo "3. Exit"
+    echo "========================="
+    read -p "Enter option [1-3]: " option
+
+    case $option in
+        1) bash register.sh ;;
+        2) bash login.sh ;;
+        3) echo "Exiting..."; exit 0 ;;
+        *) echo "Invalid option, try again!"; sleep 1 ;;
+```
+- Membuat terminal sederhana untuk pengoperasian login dan register
+
+### c. Unceasing Spirit
+Karena diperlukan pengecekan keaslian “Player” yang aktif, maka diperlukan sistem untuk pencegahan duplikasi “Player”. Jadikan sistem login/register tidak bisa memakai email yang sama (email = unique), tetapi tidak ada pengecekan tambahan untuk username.
+
+```
+if grep -q "^$email," "$data_file"; then
+            echo "⚠️ Email is already registered, try another email!"
+```
+- Melalukan pengecekan dengan ```if else``` untuk cek apakah ada email yang sama dalam database
+
+ 
+### d. The Eternal Realm of Light
+Password adalah kunci akses ke dunia Arcaea. Untuk menjaga keamanan "Player", password perlu disimpan dalam bentuk yang tidak mudah diakses. Gunakan algoritma hashing sha256sum yang memakai static salt (bebas).
+
+```
+hash_password=$(echo -n "${salt}${password}" | sha256sum | awk '{print $1}')
+``` 
+- Memberi hash pada password dengan menggunakan ```salt``` dan ```sha256sum```
+
+```
+if [[ "$input_hash" == "$stored_hash" ]]; then
+        username=$(grep "^$email," "$data_file" | cut -d',' -f2)
+        echo "✅ Login successful! Welcome, $username!"
+        break
+    else
+        echo "❌ Invalid email or password!"
+        exit 1
+    fi
+```
+
+- Melakukan pengecekan dengan hash yang ada dalam database dan hash inputan user
+
+
 ### e. The Brutality of Glass
 Memeriksa CPU Usage
 ```
