@@ -72,7 +72,7 @@ print "Genre paling populer di Asia setelah 2023 adalah", popular_genre, "dengan
 ![Screenshot 2025-03-20 105446](https://github.com/user-attachments/assets/02c9e110-4206-499f-a94d-214af7c5527e)
 
 
-Setelah semua code berhasil dijalankan kemudian code tersebut dimasukkan ke poppo_siroyo.sh
+Masukkan semua code ke poppo_siroyo.sh
 ```
 nano poppo_siroyo.sh
 ```
