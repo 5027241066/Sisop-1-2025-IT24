@@ -383,35 +383,46 @@ brain_damage() {
 # Soal 4
 # Pokemon Analysis
 
-## Deskripsi
+## 📝 Deskripsi
 Soal nomor 4 meminta kita untuk menganalisis data penggunaan Pokemon dalam turnamen "Generation 9 OverUsed 6v6 Singles" dengan membuat skrip `pokemon_analysis.sh`. Skrip ini digunakan untuk menampilkan informasi, mengurutkan, mencari, dan memfilter data Pokemon berdasarkan CSV yang diberikan.
 
 ---
 
 ## 📌 Struktur dan Fungsi Skrip
 
-### **1. Menampilkan Ringkasan Data (`--info`)**
+### **A. Melihat summary dari data (`--info`)**
 Skrip ini akan menampilkan **Pokemon dengan Usage% dan RawUsage tertinggi**.
 
 **Command:**
 ```bash
 ./pokemon_analysis.sh pokemon_usage.csv --info
 ```
-**Output Contoh:**
+**Cara Kerja:**
+- Skrip akan membaca file CSV dan mencari **Pokemon dengan Usage% tertinggi**.
+- Skrip juga mencari **Pokemon dengan Raw Usage tertinggi**.
+- Hasil ditampilkan dalam format yang mudah dibaca.
+
+**Output:**
 ```
 📊 Summary of pokemon_usage.csv
 🔥 Highest Adjusted Usage: Landorus-Therian 31.0927%
 ⚔  Highest Raw Usage: Garchomp 563831 uses
 ```
 
-### **2. Mengurutkan Data (`--sort <column>`)**
+---
+
+### **B.Mengurutkan Pokemon berdasarkan data kolom (`--sort <column>`)**
 Mengurutkan Pokemon berdasarkan kolom tertentu seperti **usage, rawusage, name, hp, atk, def, spatk, spdef, speed**.
 
-**Command Contoh:**
+**Command:**
 ```bash
 ./pokemon_analysis.sh pokemon_usage.csv --sort usage
 ```
-**Output Contoh (10 hasil teratas):**
+**Cara Kerja:**
+- Skrip membaca file CSV dan mengurutkan berdasarkan kolom yang dipilih.
+- Secara default, hanya **10 hasil teratas** yang ditampilkan untuk menghindari output terlalu panjang.
+
+**Output:**
 ```
 Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed
 Landorus-Therian,31.0927%,253499,Ground,Flying,89,145,90,105,80,91
@@ -419,39 +430,100 @@ Garchomp,27.0632%,563831,Ground,Dragon,108,130,95,80,85,102
 ...
 ```
 
-### **3. Mencari Pokemon Berdasarkan Nama (`--grep <name>`)**
+---
+
+### **C.Mencari nama Pokemon tertentu(`--grep <name>`)**
 Mencari Pokemon dengan nama tertentu, misalnya "Rotom".
 
 **Command:**
 ```bash
 ./pokemon_analysis.sh pokemon_usage.csv --grep Rotom
 ```
-**Output Contoh:**
+**Cara Kerja:**
+- Skrip akan mencari semua Pokemon dengan nama yang mengandung kata "Rotom".
+- Hasil akan diurutkan berdasarkan **Usage%** secara descending.
+
+**Output:**
 ```
 Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed
 Rotom-Wash,1.62637%,71243,Electric,Water,50,65,107,105,107,86
 ```
 
-### **4. Memfilter Pokemon Berdasarkan Type (`--filter <type>`)**
+---
+
+### **D.Mencari Pokemon berdasarkan filter nama type(`--filter <type>`)**
 Memfilter Pokemon berdasarkan tipe tertentu, misalnya **Dark**.
 
 **Command:**
 ```bash
 ./pokemon_analysis.sh pokemon_usage.csv --filter Dark
 ```
-**Output Contoh:**
+**Cara Kerja:**
+- Skrip akan mencari Pokemon yang memiliki **Type1 atau Type2** sesuai dengan yang dimasukkan.
+- Hasil akan diurutkan berdasarkan **Usage%**.
+
+**Output:**
 ```
 Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed
 Ting-Lu,21.5283%,192107,Dark,Ground,155,110,125,55,80,45
 Kingambit,21.2771%,412146,Dark,Steel,100,135,120,60,85,50
 ```
 
-### **5. Help Screen (`-h` atau `--help`)**
+---
+### **E. Error Handling (`--filter` tanpa argumen, file tidak ditemukan, opsi tidak valid)**
+
+**Command Contoh (tanpa filter type):**
+```bash
+./pokemon_analysis.sh pokemon_usage.csv --filter
+```
+**Cara Kerja:**
+- Jika tidak ada tipe yang diberikan, skrip akan menampilkan pesan error.
+- Mencegah program crash akibat input yang tidak lengkap.
+
+**Output Contoh:**
+```
+Error: No filter option provided
+Use -h or --help for more information
+```
+
+**Command Contoh (file tidak ditemukan):**
+```bash
+./pokemon_analysis.sh data_tidak_ada.csv --info
+```
+**Output:**
+```
+Error: File 'data_tidak_ada.csv' not found!
+```
+
+**Command Contoh (opsi tidak valid):**
+```bash
+./pokemon_analysis.sh pokemon_usage.csv --wrongoption
+```
+**Output:**
+```
+Error: Invalid option '--wrongoption'
+Use -h or --help for more information
+```
+
+### **F. Help Screen (`-h` atau `--help`)**
 Menampilkan bantuan mengenai penggunaan skrip.
 
 **Command:**
 ```bash
 ./pokemon_analysis.sh -h
+```
+**Cara Kerja:**
+- Skrip akan mencetak daftar opsi yang tersedia beserta contoh penggunaannya.
+
+**Output:**
+```
+Usage: ./pokemon_analysis.sh <input_file> <option> [arguments]
+Options:
+  --info               : Show summary of Pokemon usage (Usage% and RawUsage)
+  --sort <column>      : Sort Pokemon by column (usage, rawusage, name, hp, atk, def, spatk, spdef, speed)
+  --grep <name>        : Search Pokemon by name
+  --filter <type>      : Filter Pokemon by type (e.g., Dark, Fire)
+  -h, --help           : Show this help screen
 ```
 
 ---
