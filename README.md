@@ -411,7 +411,7 @@ Skrip ini akan menampilkan **Pokemon dengan Usage% dan RawUsage tertinggi**.
 
 ---
 
-### **B.Mengurutkan Pokemon berdasarkan data kolom (`--sort <column>`)**
+### **B. Mengurutkan Pokemon berdasarkan data kolom (`--sort <column>`)**
 Mengurutkan Pokemon berdasarkan kolom tertentu seperti **usage, rawusage, name, hp, atk, def, spatk, spdef, speed**.
 
 **Command:**
@@ -432,7 +432,7 @@ Garchomp,27.0632%,563831,Ground,Dragon,108,130,95,80,85,102
 
 ---
 
-### **C.Mencari nama Pokemon tertentu(`--grep <name>`)**
+### **C. Mencari nama Pokemon tertentu(`--grep <name>`)**
 Mencari Pokemon dengan nama tertentu, misalnya "Rotom".
 
 **Command:**
@@ -451,7 +451,7 @@ Rotom-Wash,1.62637%,71243,Electric,Water,50,65,107,105,107,86
 
 ---
 
-### **D.Mencari Pokemon berdasarkan filter nama type(`--filter <type>`)**
+### **D. Mencari Pokemon berdasarkan filter nama type(`--filter <type>`)**
 Memfilter Pokemon berdasarkan tipe tertentu, misalnya **Dark**.
 
 **Command:**
