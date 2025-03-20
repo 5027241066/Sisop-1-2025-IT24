@@ -378,4 +378,82 @@ brain_damage() {
 - ```sleep 1``` akan memberikan jeda sebelum perulangan ```while``` dilakukan kembali
 - ```ps -eo pid,user,%cpu,%mem,comm``` akan menampilkan proses yang sedang berjalan seperti pid, user, %cpu, %memory, dan comm
 - ```--sort=-%cpu``` akan melakukan sorting CPU usage secara descending (terbesar ke terkecil)
-- ```head -10``` menampilkan hanya 10 proses tertinggi 
+- ```head -10``` menampilkan hanya 10 proses tertinggi
+
+# Soal 4
+# Pokemon Analysis
+
+## Deskripsi
+Soal nomor 4 meminta kita untuk menganalisis data penggunaan Pokemon dalam turnamen "Generation 9 OverUsed 6v6 Singles" dengan membuat skrip `pokemon_analysis.sh`. Skrip ini digunakan untuk menampilkan informasi, mengurutkan, mencari, dan memfilter data Pokemon berdasarkan CSV yang diberikan.
+
+---
+
+## 📌 Struktur dan Fungsi Skrip
+
+### **1. Menampilkan Ringkasan Data (`--info`)**
+Skrip ini akan menampilkan **Pokemon dengan Usage% dan RawUsage tertinggi**.
+
+**Command:**
+```bash
+./pokemon_analysis.sh pokemon_usage.csv --info
+```
+**Output Contoh:**
+```
+📊 Summary of pokemon_usage.csv
+🔥 Highest Adjusted Usage: Landorus-Therian 31.0927%
+⚔  Highest Raw Usage: Garchomp 563831 uses
+```
+
+### **2. Mengurutkan Data (`--sort <column>`)**
+Mengurutkan Pokemon berdasarkan kolom tertentu seperti **usage, rawusage, name, hp, atk, def, spatk, spdef, speed**.
+
+**Command Contoh:**
+```bash
+./pokemon_analysis.sh pokemon_usage.csv --sort usage
+```
+**Output Contoh (10 hasil teratas):**
+```
+Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed
+Landorus-Therian,31.0927%,253499,Ground,Flying,89,145,90,105,80,91
+Garchomp,27.0632%,563831,Ground,Dragon,108,130,95,80,85,102
+...
+```
+
+### **3. Mencari Pokemon Berdasarkan Nama (`--grep <name>`)**
+Mencari Pokemon dengan nama tertentu, misalnya "Rotom".
+
+**Command:**
+```bash
+./pokemon_analysis.sh pokemon_usage.csv --grep Rotom
+```
+**Output Contoh:**
+```
+Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed
+Rotom-Wash,1.62637%,71243,Electric,Water,50,65,107,105,107,86
+```
+
+### **4. Memfilter Pokemon Berdasarkan Type (`--filter <type>`)**
+Memfilter Pokemon berdasarkan tipe tertentu, misalnya **Dark**.
+
+**Command:**
+```bash
+./pokemon_analysis.sh pokemon_usage.csv --filter Dark
+```
+**Output Contoh:**
+```
+Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed
+Ting-Lu,21.5283%,192107,Dark,Ground,155,110,125,55,80,45
+Kingambit,21.2771%,412146,Dark,Steel,100,135,120,60,85,50
+```
+
+### **5. Help Screen (`-h` atau `--help`)**
+Menampilkan bantuan mengenai penggunaan skrip.
+
+**Command:**
+```bash
+./pokemon_analysis.sh -h
+```
+
+---
+
+
