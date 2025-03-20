@@ -216,6 +216,14 @@ on_the_run() {
   - ```[%-50s]``` untuk membuat panjang bar adalah 50 karakter
   - ```printf '▨%.0s'``` untuk mencetak bar sebanyak angka dalam seq
   - ```seq 1 $progress``` untuk membuat angka progress dari 1 hingga 100
+
+Revisi 
+```
+	# Tambahan
+	local width=$(tput cols)  
+	local max_bar_width=$((width - 10)) 
+```
+- Memodifikasi fungsi agar dapat membaca panjang terminal, sehingga tampilan progress bar bisa menyeluruh dari kiri hingga kanan terminal
     
 
 ### c. Time
