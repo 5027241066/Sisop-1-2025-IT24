@@ -34,7 +34,7 @@ Menginstall file reading_data.csv
 ```
 wget "https://drive.usercontent.google.com/u/0/uc?id=1l8fsj5LZLwXBlHaqhfJVjz_T0p7EJjqV&export=download" -O reading_data.csv
 ```
-### a.
+### a. Banyak Buku yang Dibaca oleh Chris Hemsworth
 Menggunakan awk untuk mencari “Chris Hemsworth” dan menghitung buku yang dibacanya.
 ```
 awk -F, '{
@@ -52,7 +52,7 @@ Mencari "Chris Hemsworth" di column 2 kemudian menghitung berapa kali nama terse
 ![image](https://github.com/user-attachments/assets/30674467-06b2-4349-adf9-be4ab652ee60)
 
 
-### b.
+### b. Rata-rata Pembaca Menggunakan Tablet
 Menghitung rata-rata pembaca buku yang menggunakan media tablet.
 Diketahui Device terdapat pada column H/8 dan Reading Duration pada column F/6.
 ```
@@ -64,7 +64,7 @@ awk -F, '{if ($8 == "Tablet") {total += $6; count++}} END {print "Rata-rata dura
 ![image](https://github.com/user-attachments/assets/30674467-06b2-4349-adf9-be4ab652ee60)
 
 
-### c.
+### c. Pembaca yang Memberi Rating Tertinggi
 Mencari orang yang memberi rating paling tinggi pada buku yang dibacanya.
 Diketahui rating diberikan pada column G/7.
 ```
@@ -75,7 +75,7 @@ awk -F, '{if ($7 > max && $7 >= 0 && $7 <= 10) {max = $7; name = $2; book = $3}}
 ![image](https://github.com/user-attachments/assets/30674467-06b2-4349-adf9-be4ab652ee60)
 
 
-### d
+### d. Genre Buku Paling Popular di Asia
 Mencari buku yang paling popolar di Asia dan setelah tahun 2023.
 ```
 awk -F, '$9 ~ /Asia/ && $5 > "2023-12-31" {genre[$4]++} 
