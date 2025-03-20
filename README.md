@@ -22,6 +22,8 @@ awk -F, '{
 Mencari "Chris Hemsworth" di column 2 kemudian menghitung berapa kali nama tersebut muncul untuk mengetahui berapa buku yang telah dibaca.
 - ```if ($2 == "Chris Hemsworth") { count++}``` jika pada column 2 terdapat "Chris Hemsworth" maka akan "count" ditambahkan 1
 - ```count=count``` selain Chris Hemsworth count akan tetap sama
+![Screenshot 2025-03-20 105400](https://github.com/user-attachments/assets/5f21e9fb-a111-4104-8598-c8eb53c35b72)
+
 
 ### b.
 Menghitung rata-rata pembaca buku yang menggunakan media tablet
@@ -32,6 +34,8 @@ awk -F, '{if ($8 == "Tablet") {total += $6; count++}} END {print "Rata-rata dura
 - ```$8 -- "Tablet" total += $6``` untuk mencari pada column 8 yang membaca menggunakan tablet kemudian melihat pada column 6 dan memasukkan angka ke dalam variabel "total"
 - ```count++``` menambah tiap pengulangan pengguna tablet ke dalam variabel "total"
 - ```total/count``` untuk menghitung rata-rata dari variabel "total" dibagi dengan jumlah count yang terjadi
+![Screenshot 2025-03-20 105418](https://github.com/user-attachments/assets/b68f5b2f-da2b-442d-ba1c-b219a4dfd2d0)
+
 
 ### c.
 Mencari orang yang memberi rating paling tinggi pada buku yang dibacanya.
@@ -41,6 +45,8 @@ awk -F, '{if ($7 > max && $7 >= 0 && $7 <= 10) {max = $7; name = $2; book = $3}}
 ```
 - ```$7 > max && $7 >= 0 && $7 <= 10``` memeriksa apakah pada column 7 yang sebelumnya disimpan memiliki nilai lebih besar dari yang sebelumnya telah disimpan kemudian memberi limit untuk mencari angka pada column 7 yaitu minimal 0 dan maksimal 10
 - ```max = $7; name = $2; book = $3``` untuk menyinpan apabila telah ditemukan rating paling tinggi pada column 7
+![Screenshot 2025-03-20 105432](https://github.com/user-attachments/assets/0c243ce2-09a5-4f43-b14a-72ea836761e7)
+
 
 ### d
 Mencari buku yang paling popolar di Asia dan setelah tahun 2023
@@ -63,11 +69,15 @@ print "Genre paling populer di Asia setelah 2023 adalah", popular_genre, "dengan
 - ```(genre[g] > max_count)``` memeriksa jumlah genre apakah lebih besar dari max_count
 - ```{max_count = genre[g]``` jika ditemukan genre saat ini lebih banyak dari genre sebelumnya maka akan disimpan ke popular genre
 - ```popular_genre = g``` memperbarui hasil sebelumnya kedalam popular genre
+![Screenshot 2025-03-20 105446](https://github.com/user-attachments/assets/02c9e110-4206-499f-a94d-214af7c5527e)
+
 
 Setelah semua code berhasil dijalankan kemudian code tersebut dimasukkan ke poppo_siroyo.sh
 ```
 nano poppo_siroyo.sh
 ```
+### Revisi
+Menghapus ```wget``` dari file poppo_siroyo.sh
 
 # Soal 2
 
