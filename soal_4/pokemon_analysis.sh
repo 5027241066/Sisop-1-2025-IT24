@@ -75,10 +75,12 @@ search_pokemon() {
     input_file=$1
     search_term=$2
 
-    echo "Pokemon,Usage%,RawUsage,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Speed"
-    grep -i "^$search_term," "$input_file" | sort -t, -k2,2nr
-}
+    # Pastikan header tetap tampil
+    head -n 1 "$input_file"
 
+    # Cari Pokemon dengan nama yang mengandung keyword dan urutkan berdasarkan Us>   
+    awk -F',' -v name="$search_term" 'NR>1 && tolower($1) ~ tolower(name)' "$inpu>}
+    
 # Pokemon berdasarkan type
 filter_by_type() {
     input_file=$1
