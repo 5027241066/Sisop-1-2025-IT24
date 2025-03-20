@@ -132,9 +132,10 @@ echo "Fragments Usage: $fragment_usage ($fragment_used / $fragment_tot)"
 echo "Fragments Available: $fragment_avail"
 ```
 - ```awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {print (total-avail)*100/total "%"}' /proc/meminfo``` Mencari ```MemTotal``` kemudian dikurang ```MemAvailable``` dan kedua itu dibagi dengan ```Memtotal``` dan dikali 100 untuk menghitung usage dari Fragments.
-- ```awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {print (total-avail)/1024 " MB"}' /proc/meminfo```
-- ```awk '/MemTotal/ {print $2/1024 " MB"}' /proc/meminfo```
-- ```awk '/MemAvailable/ {print $2/1024 " MB"}' /proc/meminfo```
+- ```awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {print (total-avail)/1024 " MB"}' /proc/meminfo``` Menunjukkan RAM yang sedang dipakai dengan cara ```MemTotal``` - ```MemAvailable``` kemudian dibagi 1024 agar tampil dalam format MB.
+Dibagi 1024 agar hasilnya dalam MB.
+- ```awk '/MemTotal/ {print $2/1024 " MB"}' /proc/meminfo``` Mencari baris ```MemTotal``` dalam ```/proc/meminfo``` Mengambil dari kolom kedua ```($2)``` nilai total RAM dalam KB. Kemudian dirubah menjadi MB dengan dibagi 1024.
+- ```awk '/MemAvailable/ {print $2/1024 " MB"}' /proc/meminfo``` Mengetahui RAM yang tersedia dengan cara mencari ```MemAvailable``` kemudian diubah ke MB dengan dibagi 1024.
 - ```echo "Fragments Usage: $fragment_usage ($fragment_used / $fragment_tot)"``` Print hasil dari ```fragment_usage``` kemudian memperlihatkan berapa RAM yang terpakai ```fragment_used``` dari total RAM ```fragment_tot```.
 - ```echo "Fragments Available: $fragment_avail"``` Print hasil dari ```fragment_avail``` untuk mengetahui berapa RAM yang tersedia.
 ![image](https://github.com/user-attachments/assets/b2e65b86-7465-41c6-a815-587be0949689)
